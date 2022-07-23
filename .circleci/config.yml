@@ -8,7 +8,7 @@ commands:
         type: string
         default: "Hello World"
     steps:
-      - run: echo << parameters.to >>
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 
 jobs:
   save_hello_world_output:
@@ -16,7 +16,6 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - print_pipeline_id:
-        to: $CIRCLE_WORKFLOW_ID
       - run: echo "hello world" > ~/output.txt
       - persist_to_workspace:
           root: ~/
